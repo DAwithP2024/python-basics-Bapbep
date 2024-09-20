@@ -48,20 +48,18 @@ def add_to_cart(cart, product, quantity):
     cart.append((product, quantity))
 
 def display_cart(cart):
-    total_cost = sum(product[1] * quantity for product, quantity in cart)
-    print("Your Cart:")
+    total_cost = 0
     for product, quantity in cart:
+        total_cost += product[1] * quantity
         print(f"{product[0]} - ${product[1]} x {quantity} = ${product[1] * quantity}")
     print(f"Total cost: ${total_cost}")
     return total_cost
 
 def generate_receipt(name, email, cart, total_cost, address):
-    print(f"Receipt for {name}\nEmail: {email}")
+    print(f"Customer: {name}\nEmail: {email}\nItems Purchased:\n")
     for product, quantity in cart:
-        print(f"{product[0]} x {quantity} - ${product[1]} each")
-    print(f"Total: ${total_cost}")
-    print(f"Delivery Address: {address}")
-    print("Your items will be delivered in 3 days. Payment will be accepted after successful delivery.")
+        print(f"{quantity} x {product[0]} - ${product[1]} = ${product[1] * quantity}")
+    print(f"Total: ${total_cost}\nDelivery Address: {address}\nYour items will be delivered in 3 days.\nPayment will be accepted after successful delivery.")
 
 def validate_name(name):
     parts = name.split()
